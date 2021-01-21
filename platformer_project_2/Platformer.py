@@ -191,3 +191,143 @@ while True: # game loop
     screen.blit(pygame.transform.scale(display,WINDOW_SIZE),(0,0))
     pygame.display.update()
     clock.tick(60)
+
+
+def gym_task():
+   """fgdsssssssggggggggggggggggdgdfsssgggggfffffffffffffffffffffffffffffffffffffffffffffffffffff
+   Preconditions: NA
+   :parameter: NA
+   :return: NA
+   """
+   global colliding
+   global current_time
+   global start
+   global answer
+   global end
+   if student_rect.colliderect(gym) and not colliding:  # check collision
+       current_time = pygame.time.get_ticks()  # get the game running time
+       colliding = True
+   if pygame.time.get_ticks() < current_time + 5000 and colliding:  # check whether the time has passed 5 seconds or not
+       ## print "press f to start task" for five seconds
+       text = pygame.font.SysFont("Microsoft Yahei UI Light", 60).render('press f to start task', True, (0, 0, 0))
+       screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+   if not student_rect.colliderect(gym):  # make colliding be False again when the player is not in gym
+       colliding = False
+   if start == True and colliding:
+       if pygame.time.get_ticks() > current_time + 5000 and pygame.time.get_ticks() < current_time + 10000 and colliding:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 35).render('Mr. MacNeil: Welcome to gym class, I am your coach Mr. MacNeil. I prepared a quiz for you, good luck!', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if pygame.time.get_ticks() > current_time + 10000 and pygame.time.get_ticks() < current_time + 13000 and colliding:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: What is Toronto Maple Leafs?', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if pygame.time.get_ticks() > current_time + 13000 and pygame.time.get_ticks() < current_time + 18000 and colliding:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('1. A kind of maple leaf 2. An ice hockey team 3. A basketball team', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if answer == "1":
+           if pygame.time.get_ticks() > current_time + 18000 and pygame.time.get_ticks() < current_time + 20000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 20000 and pygame.time.get_ticks() < current_time + 22500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 23000 and pygame.time.get_ticks() < current_time + 25000 and colliding:
+               pygame.quit()
+               sys.exit()
+       if answer == "2":
+           if pygame.time.get_ticks() > current_time + 18000 and pygame.time.get_ticks() < current_time + 20000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is correct!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if answer == "3":
+           if pygame.time.get_ticks() > current_time + 18000 and pygame.time.get_ticks() < current_time + 20000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 20000 and pygame.time.get_ticks() < current_time + 22500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 25000 and colliding:
+               pygame.quit()
+               sys.exit()
+       if pygame.time.get_ticks() > current_time + 20000 and pygame.time.get_ticks() < current_time + 23000 and colliding and not end:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: Where is deltoid located?', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if pygame.time.get_ticks() > current_time + 23000 and pygame.time.get_ticks() < current_time + 28000 and colliding:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('4. Shoulders 5. Legs 6. Arms', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if answer == "4":
+           if pygame.time.get_ticks() > current_time + 28000 and pygame.time.get_ticks() < current_time + 30000 and colliding:
+               correct_answer = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is correct!', True, (255, 255, 255))
+               screen.blit(correct_answer, (int((WINDOW_SIZE[0] - correct_answer.get_width()) / 2), int((WINDOW_SIZE[1] - correct_answer.get_height()) / 2)))
+       if answer == "5":
+           if pygame.time.get_ticks() > current_time + 28000 and pygame.time.get_ticks() < current_time + 30000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 30000 and pygame.time.get_ticks() < current_time + 32500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 35000 and colliding:
+               pygame.quit()
+               sys.exit()
+       if answer == "6":
+           if pygame.time.get_ticks() > current_time + 28000 and pygame.time.get_ticks() < current_time + 30000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 30000 and pygame.time.get_ticks() < current_time + 32500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 35000 and colliding:
+               pygame.quit()
+               sys.exit()
+       if pygame.time.get_ticks() > current_time + 30000 and pygame.time.get_ticks() < current_time + 33000 and colliding and not end:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: How many players are there for each soccer team in a game?', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if pygame.time.get_ticks() > current_time + 33000 and pygame.time.get_ticks() < current_time + 38000 and colliding:
+           text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('7. 10 players 8. 11 players 9. 12 players', True, (255, 255, 255))
+           screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+       if answer == "7":
+           if pygame.time.get_ticks() > current_time + 38000 and pygame.time.get_ticks() < current_time + 40000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 40000 and pygame.time.get_ticks() < current_time + 42500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 45000 and colliding:
+               pygame.quit()
+               sys.exit()
+       if answer == "8":
+           if pygame.time.get_ticks() > current_time + 38000 and pygame.time.get_ticks() < current_time + 40000 and colliding:
+               correct_answer = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is correct! You completed your quiz!', True, (255, 255, 255))
+               screen.blit(correct_answer, (int((WINDOW_SIZE[0] - correct_answer.get_width()) / 2), int((WINDOW_SIZE[1] - correct_answer.get_height()) / 2)))
+       if answer == "9":
+           if pygame.time.get_ticks() > current_time + 38000 and pygame.time.get_ticks() < current_time + 40000 and colliding:
+               text = pygame.font.SysFont("Microsoft Yahei UI Light", 50).render('Mr. MacNeil: That is wrong! You lose!', True, (255, 255, 255))
+               screen.blit(text, (int((WINDOW_SIZE[0] - text.get_width()) / 2), int((WINDOW_SIZE[1] - text.get_height()) / 2)))
+               pygame.mixer.music.fadeout(500)
+               end = True
+           if pygame.time.get_ticks() > current_time + 40000 and pygame.time.get_ticks() < current_time + 42500 and colliding:
+               screen.blit(scream1, (198, 0))
+               screaming_sound.play()
+           if pygame.time.get_ticks() > current_time + 45000 and colliding:
+               pygame.quit()
+               sys.exit()
+def library_task():
+
+
+def male_washroom1_check():
+def male_washroom2_check():
+def female_washroom1_check():
+def female_washroom2_check():
+def male_changing_room_check():
+def female_changing_room1_check():
+def female_changing_room2_check():
+def main_office_check():
+def office_check():
